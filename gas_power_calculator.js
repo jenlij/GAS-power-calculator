@@ -174,6 +174,7 @@ function square(x)
 }
 
 // Inverse normal distribution
+// apapted from Wichura's PPND16, Algorithm AS241, Applied Statistics Vol 37 1988 pp 477 - 484
 function ninv(p)
 {
     var SPLIT1 = 0.425;
@@ -293,6 +294,7 @@ function ninv(p)
 }
 
 // The standard normal distribution
+// ID Hill, "The Normal Integral" Applied Statistics, Vol 22, pp. 424-427
 function ndist(z, upper)
 {
 
