@@ -1,3 +1,23 @@
+<!--
+Genetic Association Study (GAS) Power Calculator
+Copyright (C) 2016  Jennifer Li Johnson
+University of Michigan School of Public Health
+Department of Biostatistics Center for Statistical Genetics
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +53,15 @@
         background-image: none !important;
       }
     </style>
-<!--google analytics tracker goes here-->
+    <script> //google analytics tracker (from gmail account)
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79655559-1', 'auto');
+      ga('send', 'pageview');
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default"> <!--navigation banner-->
@@ -46,15 +74,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/index.html"><span><img src="images/BlockM.png" height=25px></span> GAS Power Calculator</a>
+      <a class="navbar-brand" href="index.html"><span><img src="images/BlockM.png" height=25px></span> GAS Power Calculator</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/index.html">Home</a></li>
-        <li class="active"><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/about.html">About<span class="sr-only">(current)</span></a></li>
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/tutorial.html">Tutorial</a></li>
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/reference.html">Reference</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="about.html">About<span class="sr-only">(current)</span></a></li>
+        <li><a href="tutorial.html">Tutorial</a></li>
+        <li><a href="reference.html">Reference</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -67,7 +95,7 @@
           <div class="panel-body">
             This Genetic Association Study (GAS) Power Calculator is a simple interface that can be used to
             compute statistical power for large one-stage genetic association studies.
-            The underlying method is derived from the <a href="http://csg.sph.umich.edu//abecasis/CaTS/index.html">CaTS </a>power calculator for two-stage association studies (2006).
+            The underlying method is derived from the <a href="../index.html">CaTS </a>power calculator for two-stage association studies (2006).
           </div>
         </div>
     </div>
@@ -79,14 +107,15 @@
             Web developer and designer: <a href="https://github.com/jenlij">Jennifer Li Johnson</a><br>
             Web development support: <a href="https://github.com/frencil">Christopher Clark, </a>Kevin Wei Li, and Sean Caron<br><br>
             Sponsored by University of Michigan School of Public Health Department of Biostatistics <a href="http://csg.sph.umich.edu/">Center for Statistical Genetics</a><br>
-            Adapted from Dr. Andrew Skol's <a href="http://csg.sph.umich.edu//abecasis/CaTS/">CaTS power calculator</a> 2006<br>
+            Adapted from Dr. Andrew Skol's <a href="http://csg.sph.umich.edu//abecasis/CaTS/index.html">CaTS power calculator</a> 2006<br>
             Made with
             <a href="http://getbootstrap.com/">Bootstrap 3, </a>
             <a href="https://silviomoreto.github.io/bootstrap-select/">Bootstrap Select, </a>
             <a href="http://refreshless.com/nouislider/">noUiSlider, </a>
             <a href="http://highcharts.com/">Highcharts - v4.2.5, </a>
             <a href="http://code.jquery.com/jquery-1.10.2.js">jQuery - v1.10.2, </a>
-            <a href="http://code.jquery.com/ui/1.11.4/jquery-ui.js">jQuery UI - v1.11.4</a>
+            <a href="http://code.jquery.com/ui/1.11.4/jquery-ui.js">jQuery UI - v1.11.4, </a>
+            <a href="https://www.mathjax.org/">Mathjax</a>
           </div>
         </div>
     </div>
@@ -94,16 +123,14 @@
       <div class="panel panel-default" id="contact">
         <div class="panel-heading"><h3 class="panel-title">Contact</h3></div>
           <div class="panel-body">
-            Tell us what you think! Let us know if you have any questions, comments, or catch any bugs and we'll get back to you as soon as we can.<br>Please email Jennifer at <a href="mailto:jenlij@umich.edu">jenlij@umich.edu</a>
+            Tell us what you think! Let us know if you have any questions, comments, or catch any bugs and we'll get back to you as soon as we can.<br>Please email Jennifer at <a href="mailto:jenlij@umich.edu">jenlij@umich.edu</a>. Thank you!
           </div>
         </div>
-    </div>
+      </div>
     <div class="col-md-12">
       <p class="text-center">&copy 2016 <a class="footerlink" href="https://github.com/jenlij">Jennifer Li Johnson</a> | <a class="footerlink"  href="http://umich.edu/">University of Michigan</a></p>
     </div>
   </div>
 </div>
-
-
 </body>
 </html>

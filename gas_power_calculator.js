@@ -1,3 +1,23 @@
+/*
+Genetic Association Study (GAS) Power Calculator
+Copyright (C) 2016  Jennifer Li Johnson
+University of Michigan School of Public Health
+Department of Biostatistics Center for Statistical Genetics
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 //slider functionality
 (function()
 {
@@ -174,7 +194,7 @@ function square(x)
 }
 
 // Inverse normal distribution
-// apapted from Wichura's PPND16, Algorithm AS241, Applied Statistics Vol 37 1988 pp 477 - 484
+// adapted from Wichura's PPND16, Algorithm AS241, Applied Statistics Vol 37 1988 pp 477 - 484
 function ninv(p)
 {
     var SPLIT1 = 0.425;
@@ -340,9 +360,23 @@ function calculate(ncases, ncontrols, freq, risk, prevalence, alpha)
     var aa_freq = p[0];
     var ab_freq = p[1];
     var bb_freq = p[2];
+    var model = $("#disease_model option:selected").val();
 
     //genotype probabilities
-    var f = [risk * risk, risk, 1.0];
+    var f;
+    if(model == "Multiplicative"){
+      f = [risk * risk, risk, 1.0];
+    }
+    else if(model == "Additive"){
+      f = [2.0 * risk - 1.0, risk, 1.0];
+    }
+    else if(model == "Dominant"){
+      f = [risk, risk, 1.0];
+    }
+    else if(model == "Recessive"){
+      f = [risk, 1.0, 1.0];
+    }
+
     var scale = prevalence / (f[0]*p[0] + f[1]*p[1] + f[2]*p[2]);
 
     // Adjusted penetrances
@@ -379,11 +413,11 @@ function calculate(ncases, ncontrols, freq, risk, prevalence, alpha)
 function print(ncases, ncontrols, freq, risk, prevalence, alpha, error)
 {
   var a = calculate(ncases, ncontrols, freq, risk, prevalence, alpha);
-  var P = a[0]; var pcases = a[1]; var pcontrols =a[2]; var aa_freq = a[3]; var aa_prob = a[4];
+  var P = a[0]; var pcases = a[1]; var pcontrols = a[2]; var aa_freq = a[3]; var aa_prob = a[4];
   var ab_freq = a[5]; var ab_prob = a[6]; var bb_freq = a[7]; var bb_prob = a[8]; var error = a[9];
 
   if (error){return;}
-
+  $("#casesControlsRatio").html("Cases/Controls = " + (ncases/ncontrols).toFixed(3));
   $("#power_progress").html(P.toFixed(3)).attr("style","width:" + (P * 100) + "%;");
   $('#cases_progress').html(pcases.toFixed(3)).attr("style","width:" + (pcases * 100) + "%;");
   $('#controls_progress').html(pcontrols.toFixed(3)).attr("style","width:" + (pcontrols * 100) + "%;");
@@ -408,6 +442,11 @@ function graph(ncases, ncontrols, freq, risk, prevalence, alpha, selectparam)
       return;
   }
 
+  scaleArray = function(controls) {
+    var sampleSizeRatio = ncases/ncontrols;
+    return controls * sampleSizeRatio; //returns scaled cases array
+  }
+
   //find points
   var i; var j; var calc; var x=[]; var y=[]; var err; var testx=[]; var graphdata=[]; var graphtype;
   if(selectparam == "Cases"){
@@ -428,6 +467,19 @@ function graph(ncases, ncontrols, freq, risk, prevalence, alpha, selectparam)
       err = calc[9];
       if (err){continue;}
       x.push(testx[i]);
+      y.push(parseFloat(calc[0].toFixed(3)));
+    }
+    graphtype = "logarithmic";
+  }
+  else if(selectparam ==  "Cases + Controls"){
+    var xcontrols = [100,125,150,200,250,300,350,400,450,500,600,700,800,900,1000,1250,1500,2000,3000,5000,7000,10000,20000,30000,50000,100000];
+    var xcases = xcontrols.map(scaleArray);
+    for (i=0; i < xcontrols.length; i++) {
+      calc = calculate(xcases[i], xcontrols[i], freq, risk, prevalence, alpha);
+      err = calc[9];
+      if (err){continue;}
+      var xVal = xcases[i]+xcontrols[i];
+      x.push(xVal);
       y.push(parseFloat(calc[0].toFixed(3)));
     }
     graphtype = "logarithmic";
@@ -527,33 +579,29 @@ function graph(ncases, ncontrols, freq, risk, prevalence, alpha, selectparam)
 function update()
 {
   //get values from sliders and x variable selection for graph
-  var ncases = cases_slider.noUiSlider.get();
-  var ncontrols = controls_slider.noUiSlider.get();
-  var freq = allele_slider.noUiSlider.get();
-  var risk = rr_slider.noUiSlider.get();
-  var prevalence = prev_slider.noUiSlider.get();
-  var alpha = sig_input.value;
-  var selectparam = $("#x_graph option:selected").val();
+  var ncases = cases_slider.noUiSlider.get(); //cases
+  var ncontrols = controls_slider.noUiSlider.get(); //controls
+  var freq = allele_slider.noUiSlider.get(); //disease allele frequency
+  var risk = rr_slider.noUiSlider.get(); //genotype relative risk
+  var prevalence = prev_slider.noUiSlider.get(); //prevalence
+  var alpha = sig_input.value; //significance level
+  var selectparam = $("#x_graph option:selected").val(); //graph variable selection
 
   //update progress bars and graph
   print(ncases, ncontrols, freq, risk, prevalence, alpha);
   graph(ncases, ncontrols, freq, risk, prevalence, alpha, selectparam);
 }
 
-//updates graph section when selectpicker in changed
+//updates results and graph when disease model is changed
+$("#disease_model").change(function ()
+{
+  update();
+})
+
+//updates graph (and results) section when selectpicker is changed
 $("#x_graph").change(function ()
 {
-  //get values from sliders and x variable selection for graph
-  var ncases = cases_slider.noUiSlider.get();
-  var ncontrols = controls_slider.noUiSlider.get();
-  var freq = allele_slider.noUiSlider.get();
-  var risk = rr_slider.noUiSlider.get();
-  var prevalence = prev_slider.noUiSlider.get();
-  var alpha = sig_input.value;
-  var selectparam = $("#x_graph option:selected").val();
-
-  //updates graph
-  graph(ncases, ncontrols, freq, risk, prevalence, alpha, selectparam);
+  update()
 })
 
 //stand-in graph for default parameters

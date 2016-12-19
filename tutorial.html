@@ -1,3 +1,23 @@
+<!--
+Genetic Association Study (GAS) Power Calculator
+Copyright (C) 2016  Jennifer Li Johnson
+University of Michigan School of Public Health
+Department of Biostatistics Center for Statistical Genetics
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +54,16 @@
       }
     </style>
 
-<!--google analytics tracker goes here-->
+    <script> //google analytics tracker (from gmail account)
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-79655559-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <nav class="navbar navbar-default"> <!--navigation banner-->
@@ -47,16 +76,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/index.html"><span><img src="images/BlockM.png" height=25px></span> GAS Power Calculator</a>
+      <a class="navbar-brand" href="index.html"><span><img src="images/BlockM.png" height=25px></span> GAS Power Calculator</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/index.html">Home</a></li>
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/about.html">About</a></li>
-        <li class="active"><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/tutorial.html">Tutorial<span class="sr-only">(current)</span></a></li>
-        <li><a href="http://csg.sph.umich.edu//abecasis/CaTS/gas_power_calculator/reference.html">Reference</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="active"><a href="tutorial.html">Tutorial<span class="sr-only">(current)</span></a></li>
+        <li><a href="reference.html">Reference</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -65,54 +94,78 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default" id="contact">
+      <div class="panel panel-default" id="tutorial">
         <div class="panel-heading"><h3 class="panel-title">Tutorial</h3></div>
           <div class="panel-body">
-            To investigate your genetic association study design, use the sliders and text boxes in the inputs section to select your parameters.<br>
-            Given your inputs, the calculted statistical power, expected disease allele frequencies, and probability of disease will be displayed in the results section.<br>
-            Change the independent variable at the top of the graphs section to visualize the change in power over the range of the selected parameter. All the other parameters remain as are indicated in the inputs section.<br>
-            Click menu at top right hand side of graph to download plot and data.
+            To investigate your genetic association study design,
+            use the sliders and text boxes in the inputs section to select your parameters.<br>
+            Given your inputs, the calculated statistical power, expected disease allele frequencies,
+            and probability of disease will be displayed in the results section.<br>
+            Change the independent variable at the top of the graphs section to visualize the change in power over the range of the selected parameter.
+            All the other parameters remain as indicated in the inputs section.<br>
+            Click the menu at the top right hand side of graph to download plot and data.<br>
+            See below for parameter definitions and an example of how to use GAS Power Calculator.<br>
+            Click <a href="equations_gas_power_calc.pdf" target="_blank">here</a> to view the relevant equations used in calculating the results of GAS Power Calculator.<br>
           </div>
         </div>
     </div>
-    <div class="col-md-12">
-      <div class="panel panel-default" id="contact">
-        <div class="panel-heading"><h3 class="panel-title">Definitions</h3></div>
+    <div class="col-md-6">
+      <div class="panel panel-default" id="definitions-inputs">
+        <div class="panel-heading"><h3 class="panel-title">Definitions - Inputs</h3></div>
           <div class="panel-body">
-            <u><b>Inputs</b></u><br>
-            <b>Cases: </b>
+              <ul>
+                <li><b>Cases: </b>Number of cases available to genotype for the study. Ranges from 100 to 100,000.</li>
+                <li><b>Controls: </b>Number of controls available to genotype for the study. Ranges from 100 to 100,000.</li>
+                <li><b>Signficance Level: </b><i>(\(\alpha\))</i> Desired false positive rate per genetic marker. If all M markers are independent,
+                and you want a genome-wide false positive rate of x, the significance level should be \(\frac{x}{M}\) . Ranges from 1e-10 to 1.</li>
+                <li><b>Prevalence: </b><i>(prev)</i> Disease prevalence in the general population.
+                This is the probability that a randomly sampled individual has the disease.
+                Ranges from 0.0001 to 1.</li>
+                <li><b>Disease Allele Frequency: </b><i>(DAF)</i> Frequency of the disease risk allele in the general population.
+                Disease allele frequency is usually higher in cases and lower in controls. Ranges from 0.0001 to 1.</li>
+                <li><b>Genotype Relative Risk: </b><i>(GRR)</i> Since this calculator implements a multiplicative disease model,
+                the genotype relative risk \(GRR = \frac{f_1}{f_0} = \frac{f_2}{f_1}\) where \(f_0, f_1,\) and \(f_2\) are the disease probabilities for
+                individuals with 0,1, or 2 copies of the disease risk allele. Ranges from 0.0001 to 1.</li>
+              </ul>
             <br>
-            <b>Controls: </b>
-            <br>
-            <b>Signficance Level: </b>
-            <br>
-            <b>Prevalence: </b>
-            <br>
-            <b>Disease Allele Frequency: </b>
-            <br>
-            <b>Genotype Relative Risk: </b>
-            <br><br>
-            <u><b>Results</b></u><br>
-            <b>Expected power for a one-stage study: </b>
-            <br>
-            <b>Expected disease allele frequency for cases: </b>
-            <br>
-            <b>Expected disease allele frequency for controls: </b>
-            <br>
-            <b>Probability of disease for genotype A/A (with frequency x): </b>
-            <br>
-            <b>Probability of disease for genotype A/B (with frequency y): </b>
-            <br>
-            <b>Probability of disease for genotype B/B (with frequency z): </b>
-            <br>
+            <i>*Note: The lower bound for prevalence, disease allele frequency, and genotype relative risk is greater than
+            0 due to the fact that the study is irrelevant when there is no disease.</i>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default" id="definitions-results">
+        <div class="panel-heading"><h3 class="panel-title">Definitions - Results</h3></div>
+          <div class="panel-body">
+            <ul>
+              <li><b>Expected power for a one-stage study: </b><i>(P)</i> Estimated statistical power given the input parameters. One-stage study
+              (all samples genotyped on all markers in a single stage) indicated since the CaTS power calculator version has two-stage study capability.</li>
+              <li><b>Expected disease allele frequency for cases: </b><i>(casesDAF)</i> Estimated frequency of the disease risk allele in the cases population.</li>
+              <li><b>Expected disease allele frequency for controls: </b><i>(controlsDAF)</i> Estimated frequency of the disease risk allele in the controls population.</li>
+              <li><b>Probability of disease for genotype A/A (with frequency AAfreq): </b><i>(AAprob)</i> Probability that an individual with 2 copies of the disease risk allele will have the disease,
+                and the frequency of this genotype in the general population.</li>
+              <li><b>Probability of disease for genotype A/B (with frequency ABfreq): </b><i>(ABprob)</i> Probability that an individual with 1 copy of the disease risk allele will have the disease,
+              and the frequency of this genotype in the general population.</li>
+              <li><b>Probability of disease for genotype B/B (with frequency BBfreq): </b><i>(BBfreq)</i> Probability that an individual with 0 copies of the disease risk allele will have the disease,
+              and the frequency of this genotype in the general population.</li>
+            </ul>
           </div>
         </div>
     </div>
     <div class="col-md-12">
-      <div class="panel panel-default" id="contact">
+      <div class="panel panel-default" id="examples">
         <div class="panel-heading"><h3 class="panel-title">Examples</h3></div>
           <div class="panel-body">
-            Examples
+            The following is an example of how you could use the GAS Power Calculator.<br>
+            Suppose you are conducting a genome-wide association study with 1500 cases and 1500 controls.
+            You plan to genotype these samples on 300,000 independent SNPs and are willing to tolerate a genome-wide false positive rate of 3.
+            Therefore, your significance level will be 3/300000, or 0.00001. From previous studies, you know that the disease prevalence is 0.10 with an allele frequency of 0.30 in the general population.
+            Finally, you want determine the genotype relative risk that will result in a power of 0.80.
+            To do this, you can select "Genotype Relative Risk" in the drop-down menu of the graph section and zoom in to see that a 0.80 power lies between a GRR of 1.295 and 1.3. At this point,
+            use the GRR slider in the inputs section to estimate a more precise value (around GRR=1.2961). See the screenshots below or try it yourself!<br>
+            Of course this is not the only application. Play around with the input values and the independent variable in the graph section to see how they influence
+            the power of the study and the additional output values in the results section.<br>
+            <img src="images/exampleSS.png" alt="example" class="center-block" style="width:100%"/>
           </div>
         </div>
     </div>
