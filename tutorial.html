@@ -1,6 +1,6 @@
 <!--
 Genetic Association Study (GAS) Power Calculator
-Copyright (C) 2016  Jennifer Li Johnson
+Copyright (C) 2017  Jennifer Li Johnson
 University of Michigan School of Public Health
 Department of Biostatistics Center for Statistical Genetics
 
@@ -97,15 +97,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="panel panel-default" id="tutorial">
         <div class="panel-heading"><h3 class="panel-title">Tutorial</h3></div>
           <div class="panel-body">
-            To investigate your genetic association study design,
-            use the sliders and text boxes in the inputs section to select your parameters.<br>
-            Given your inputs, the calculated statistical power, expected disease allele frequencies,
-            and probability of disease will be displayed in the results section.<br>
-            Change the independent variable at the top of the graphs section to visualize the change in power over the range of the selected parameter.
-            All the other parameters remain as indicated in the inputs section.<br>
-            Click the menu at the top right hand side of graph to download plot and data.<br>
-            See below for parameter definitions and an example of how to use GAS Power Calculator.<br>
-            Click <a href="equations_gas_power_calc.pdf" target="_blank">here</a> to view the relevant equations used in calculating the results of GAS Power Calculator.<br>
+            <ul>
+            <li>To investigate your genetic association study design, use the sliders and text boxes in the inputs section to select your parameters.</li>
+            <li>Given your inputs, the calculated statistical power, expected disease allele frequencies, and probability of disease will be displayed in the results section.</li>
+            <li>Change the independent variable at the top of the graphs section to visualize the change in power over the range of the selected parameter. All the other parameters remain as indicated in the inputs section.</li>
+            <li>Click the menu at the top right hand side of graph to download plot and data.</li>
+            <li>See below for parameter definitions and an example of how to use GAS Power Calculator.</li>
+            <li>Click <a href="equations_gas_power_calc.pdf" target="_blank">here</a> to view the relevant equations used in calculating the results of GAS Power Calculator.</li>
+          </ul>
           </div>
         </div>
     </div>
@@ -113,20 +112,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="panel panel-default" id="definitions-inputs">
         <div class="panel-heading"><h3 class="panel-title">Definitions - Inputs</h3></div>
           <div class="panel-body">
-              <ul>
-                <li><b>Cases: </b>Number of cases available to genotype for the study. Ranges from 100 to 100,000.</li>
-                <li><b>Controls: </b>Number of controls available to genotype for the study. Ranges from 100 to 100,000.</li>
-                <li><b>Signficance Level: </b><i>(\(\alpha\))</i> Desired false positive rate per genetic marker. If all M markers are independent,
-                and you want a genome-wide false positive rate of x, the significance level should be \(\frac{x}{M}\) . Ranges from 1e-10 to 1.</li>
-                <li><b>Prevalence: </b><i>(prev)</i> Disease prevalence in the general population.
-                This is the probability that a randomly sampled individual has the disease.
-                Ranges from 0.0001 to 1.</li>
-                <li><b>Disease Allele Frequency: </b><i>(DAF)</i> Frequency of the disease risk allele in the general population.
-                Disease allele frequency is usually higher in cases and lower in controls. Ranges from 0.0001 to 1.</li>
-                <li><b>Genotype Relative Risk: </b><i>(GRR)</i> Since this calculator implements a multiplicative disease model,
+            <div class="row">
+              <div class="col-md-4"><b>Cases:</b></div>
+              <div class="col-md-8">Number of cases available to genotype for the study. Ranges from 100 to 100,000.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><b>Controls:</b></div>
+              <div class="col-md-8">Number of controls available to genotype for the study. Ranges from 100 to 100,000.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><b>Signficance Level</b> <i>(\(\alpha\))</i><b>:</b></div>
+              <div class="col-md-8">Desired false positive rate per genetic marker. If all M markers are independent,
+                and you want a genome-wide false positive rate of x, the significance level should be \(\frac{x}{M}\) . Ranges from 1e-10 to 1.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><b>Prevalence </b><i>(prev)</i><b>:</b></div>
+              <div class="col-md-8">Disease prevalence in the general population. 
+                This is the probability that a randomly sampled individual has the disease. Ranges from 0.0001 to 1.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4"><b>Disease Allele Frequency </b><i>(DAF)</i><b>:</b></div>
+              <div class="col-md-8">Frequency of the disease risk allele in the general population.
+                Disease allele frequency is usually higher in cases and lower in controls. Ranges from 0.0001 to 1.</div>
+            </div>  
+            <br>
+            <div class="row">
+              <div class="col-md-4"><b>Genotype Relative Risk </b><i>(GRR)</i><b>:</b></div>
+              <div class="col-md-8">Since this calculator implements a multiplicative disease model,
                 the genotype relative risk \(GRR = \frac{f_1}{f_0} = \frac{f_2}{f_1}\) where \(f_0, f_1,\) and \(f_2\) are the disease probabilities for
-                individuals with 0,1, or 2 copies of the disease risk allele. Ranges from 0.0001 to 1.</li>
-              </ul>
+                individuals with 0,1, or 2 copies of the disease risk allele. Ranges from 0.0001 to 1.</div>
+            </div>     
             <br>
             <i>*Note: The lower bound for prevalence, disease allele frequency, and genotype relative risk is greater than
             0 due to the fact that the study is irrelevant when there is no disease.</i>
@@ -170,7 +189,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </div>
     </div>
     <div class="col-md-12">
-      <p class="text-center">&copy 2016 <a class="footerlink" href="https://github.com/jenlij">Jennifer Li Johnson</a> | <a class="footerlink"  href="http://umich.edu/">University of Michigan</a></p>
+      <p class="text-center">&copy 2017 <a class="footerlink" href="https://github.com/jenlij">Jennifer Li Johnson</a> | <a class="footerlink"  href="http://umich.edu/">University of Michigan</a></p>
     </div>
   </div>
 </div>
