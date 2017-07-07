@@ -142,9 +142,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <br>
             <div class="row">
               <div class="col-md-4"><b>Genotype Relative Risk </b><i>(GRR)</i><b>:</b></div>
-              <div class="col-md-8">Since this calculator implements a multiplicative disease model,
-                the genotype relative risk \(GRR = \frac{f_1}{f_0} = \frac{f_2}{f_1}\) where \(f_0, f_1,\) and \(f_2\) are the disease probabilities for
-                individuals with 0,1, or 2 copies of the disease risk allele. Ranges from 0.0001 to 1.</div>
+              <div class="col-md-8">The genotype relative risk depends on the disease model, where \(f_0, f_1,\) and \(f_2\) are the disease probabilities for
+                individuals with 0,1, or 2 copies of the disease risk allele. Ranges from 0.0001 to 1. <br>
+                Multiplicative: \(GRR = \frac{f_1}{f_0} = \frac{f_2}{f_1}\) <br>
+                Additive: \(GRR = \frac{f_1}{f_0}\) <br>
+                Dominant: \(GRR = \frac{f_1}{f_0} = \frac{f_2}{f_0}\)
+                <br>
+                Recessive: \(GRR = \frac{f_2}{f_0} = \frac{f_2}{f_1}\)
+                </div>
             </div>     
             <br>
             <i>*Note: The lower bound for prevalence, disease allele frequency, and genotype relative risk is greater than
@@ -156,18 +161,39 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       <div class="panel panel-default" id="definitions-results">
         <div class="panel-heading"><h3 class="panel-title">Definitions - Results</h3></div>
           <div class="panel-body">
-            <ul>
-              <li><b>Expected power for a one-stage study: </b><i>(P)</i> Estimated statistical power given the input parameters. One-stage study
-              (all samples genotyped on all markers in a single stage) indicated since the CaTS power calculator version has two-stage study capability.</li>
-              <li><b>Expected disease allele frequency for cases: </b><i>(casesDAF)</i> Estimated frequency of the disease risk allele in the cases population.</li>
-              <li><b>Expected disease allele frequency for controls: </b><i>(controlsDAF)</i> Estimated frequency of the disease risk allele in the controls population.</li>
-              <li><b>Probability of disease for genotype A/A (with frequency AAfreq): </b><i>(AAprob)</i> Probability that an individual with 2 copies of the disease risk allele will have the disease,
-                and the frequency of this genotype in the general population.</li>
-              <li><b>Probability of disease for genotype A/B (with frequency ABfreq): </b><i>(ABprob)</i> Probability that an individual with 1 copy of the disease risk allele will have the disease,
-              and the frequency of this genotype in the general population.</li>
-              <li><b>Probability of disease for genotype B/B (with frequency BBfreq): </b><i>(BBfreq)</i> Probability that an individual with 0 copies of the disease risk allele will have the disease,
-              and the frequency of this genotype in the general population.</li>
-            </ul>
+            <div class="row">
+              <div class="col-md-5"><b>Expected power for a one-stage study </b><i>(P)</i><b>:</b></div>
+              <div class="col-md-7">Estimated statistical power given the input parameters. One-stage study (all samples genotyped on all markers in a single stage) 
+                indicated since the CaTS power calculator version has two-stage study capability.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-5"><b>Expected disease allele frequency for cases </b><i>(casesDAF)</i><b>:</b></div>
+              <div class="col-md-7">Estimated frequency of the disease risk allele in the cases population.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-5"><b>Expected disease allele frequency for controls </b><i>(controlsDAF)</i><b>:</b></div>
+              <div class="col-md-7">Estimated frequency of the disease risk allele in the controls population.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-5"><b>Probability of disease for genotype A/A (with frequency AAfreq) </b><i>(AAprob)</i><b>:</b></div>
+              <div class="col-md-7">Probability that an individual with 2 copies of the disease risk allele will have the disease,
+                and the frequency of this genotype in the general population.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-5"><b>Probability of disease for genotype A/B (with frequency ABfreq) </b><i>(ABprob)</i><b>:</b></div>
+              <div class="col-md-7">Probability that an individual with 1 copy of the disease risk allele will have the disease,
+              and the frequency of this genotype in the general population.</div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-5"><b>Probability of disease for genotype B/B (with frequency BBfreq) </b><i>(BBfreq)</i><b>:</b></div>
+              <div class="col-md-7">Probability that an individual with 0 copies of the disease risk allele will have the disease,
+              and the frequency of this genotype in the general population.</div>
+            </div>
           </div>
         </div>
     </div>
