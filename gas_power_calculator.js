@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //slider functionality
 (function()
 {
-
+            //cases
             var cases_slider = document.getElementById('cases_slider');
             noUiSlider.create(cases_slider, {
               start:1000,
@@ -47,7 +47,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             cases_input.addEventListener('change', function(){
               cases_slider.noUiSlider.set(this.value);
             });
-
+            //contrals
             var controls_slider = document.getElementById('controls_slider');
             noUiSlider.create(controls_slider, {
                 start: 1000,
@@ -73,7 +73,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             controls_input.addEventListener('change', function(){
               controls_slider.noUiSlider.set(this.value);
             });
-
+            //significance level
             var sig_slider = document.getElementById('sig_slider');
             noUiSlider.create(sig_slider, {
                start: 0.000007,
@@ -110,7 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             sig_input.addEventListener('change', function(){
                 sig_slider.noUiSlider.set(this.value);
             });
-
+            //prevalence
             var prev_slider = document.getElementById('prev_slider');
             noUiSlider.create(prev_slider, {
                 start: 0.1,
@@ -133,7 +133,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             prev_input.addEventListener('change', function(){
               prev_slider.noUiSlider.set(this.value);
             });
-
+            //DAF
            var allele_slider = document.getElementById('allele_slider');
            noUiSlider.create(allele_slider, {
                 start: 0.5,
@@ -156,7 +156,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             allele_input.addEventListener('change', function(){
               allele_slider.noUiSlider.set(this.value);
             });
-
+            //GRR
             var rr_slider = document.getElementById('rr_slider');
             noUiSlider.create(rr_slider, {
               start: 1.5,
@@ -581,8 +581,8 @@ function update()
   //get values from sliders and x variable selection for graph
   var ncases = cases_slider.noUiSlider.get(); //cases
   var ncontrols = controls_slider.noUiSlider.get(); //controls
-  var freq = allele_slider.noUiSlider.get(); //disease allele frequency
-  var risk = rr_slider.noUiSlider.get(); //genotype relative risk
+  var freq = allele_slider.noUiSlider.get(); //disease allele frequency (DAF)
+  var risk = rr_slider.noUiSlider.get(); //genotype relative risk (GRR)
   var prevalence = prev_slider.noUiSlider.get(); //prevalence
   var alpha = sig_input.value; //significance level
   var selectparam = $("#x_graph option:selected").val(); //graph variable selection
