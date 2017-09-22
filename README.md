@@ -1,20 +1,29 @@
 # GAS-power-calculator
-This Genetic Association Study (GAS) Power Calculator is a simple interface that can be used to compute statistical power for large one-stage genetic association studies. The underlying method is derived from the CaTS power calculator for two-stage association studies (2006).
+This Genetic Association Study (GAS) Power Calculator is a simple interface that can be used to compute statistical power for large one-stage genetic association studies. The underlying method is derived from the [CaTS](http://csg.sph.umich.edu//abecasis/CaTS/index.html) power calculator for two-stage association studies (2006).
 
 http://csg.sph.umich.edu/abecasis/gas_power_calculator/
 
-You may find a copy of the site on Github pages at http://jenlij.github.io/GAS-power-calculator/
-
 ## Authors
-Principal investigator: Dr. Goncalo Abecasis
 Web developer and designer: Jennifer Li Johnson
+
+## Acknowledgements
+Principal investigator: Dr. Goncalo Abecasis
 Web development support: Christopher Clark, Kevin Wei Li, and Sean Caron
 
 Sponsored by University of Michigan School of Public Health Department of Biostatistics Center for Statistical Genetics
 Adapted from Dr. Andrew Skol's CaTS power calculator 2006
 
 ## Built With
-Bootstrap 3, Bootstrap Select, noUiSlider, Highcharts - v4.2.5, jQuery - v1.10.2, jQuery UI - v1.11.4, Mathjax
+* HTML
+* CSS
+* JavaScript
+* Bootstrap 3
+* Bootstrap Select
+* noUiSlider
+* Highcharts - v4.2.5
+* jQuery - v1.10.2
+* jQuery UI - v1.11.4
+* Mathjax
 
 ## Getting Started
 To investigate your genetic association study design, use the sliders and text boxes in the inputs section to select your parameters.
